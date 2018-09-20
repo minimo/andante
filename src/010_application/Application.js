@@ -1,16 +1,20 @@
-phina.define("Application", {
-  superClass: "CanvasApp",
+phina.namespace(function() {
 
-  init: function() {
-    this.superInit({
-      query: '#world',
-      width: SC_W,
-      height: SC_H,
-      backgroundColor: 'rgba(0, 0, 0, 1)',
-    });
-    this.fps = 30;
-  },
+  phina.define("Application", {
+    superClass: "CanvasApp",
 
-  _onLoadAssets: function() {
-  },
+    init: function() {
+      this.superInit({
+        query: '#world',
+        width: SC_W,
+        height: SC_H,
+        backgroundColor: 'rgba(0, 0, 0, 1)',
+      });
+      this.fps = 30;
+    },
+
+    _onLoadAssets: function() {
+    },
+  });
+
 });

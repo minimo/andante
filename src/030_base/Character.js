@@ -5,13 +5,16 @@
  *  ゲーム内のキャラクタは全てこのクラスから派生する
  */
 
-phina.define("Character", {
-  superClass: "DisplayElement",
+phina.namespace(function() {
 
-  characterType: "object",
+  phina.define("Character", {
+    superClass: "DisplayElement",
 
-  init: function() {
-    this.superInit();
-  },
+    characterType: null,
+
+    init: function() {
+      this.superInit();
+    },
+  });
 
 });

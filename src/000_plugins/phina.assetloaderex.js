@@ -22,15 +22,15 @@ phina.define("phina.extension.AssetLoaderEx", {
 
   load: function(assets, callback) {
     this._onLoadAssets = callback || function(){};
-    var loader = phina.asset.AssetLoader();
+    const loader = phina.asset.AssetLoader();
     loader.load(assets);
-    loader.on('load', function(e) {
+    loader.on('load', e => {
       this.loadcomplete = true;
       this._onLoadAssets();
-    }.bind(this));
-    loader.onprogress = function(e) {
+    });
+    loader.onprogress = e => {
       this.loadprogress = e.progress;
-    }.bind(this);
+    };
     return this;
   },
 });

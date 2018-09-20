@@ -4,14 +4,17 @@
  *
  */
 
-phina.define("TitleScene", {
-  superClass: "DisplayScene",
+phina.namespace(function() {
 
-  init: function() {
-    this.superInit({width: SC_W, height: SC_H});
-  },
+  phina.define("TitleScene", {
+    superClass: "DisplayScene",
 
-  update: function() {
-  },
+    init: function() {
+      this.superInit({width: SC_W, height: SC_H});
+    },
+
+    update: function() {
+    },
+  });
 
 });

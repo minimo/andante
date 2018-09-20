@@ -36,10 +36,10 @@ phina.display.Sprite.prototype.setFrameIndex = function(index, width, height) {
   var maxIndex = row*col;
   index = index%maxIndex;
 
-  var x   = index%row;
-  var y   = ~~(index/row);
-  this.srcRect.x = sx+x*tw;
-  this.srcRect.y = sy+y*th;
+  var x   = index % row;
+  var y   = ~~(index / row);
+  this.srcRect.x = sx + x * tw;
+  this.srcRect.y = sy + y * th;
   this.srcRect.width  = tw;
   this.srcRect.height = th;
 
@@ -72,9 +72,9 @@ phina.display.DisplayElement.prototype.isHitElement = function(elm) {
 //子要素全て切り離し
 phina.app.Element.prototype.removeChildren = function(beginIndex) {
   beginIndex = beginIndex || 0;
-  var tempChildren = this.children.slice();
-  var len = len = tempChildren.length;
-  for (var i = beginIndex; i < len; ++i) {
+  const tempChildren = this.children.slice();
+  const len = tempChildren.length;
+  for (let i = beginIndex; i < len; ++i) {
     tempChildren[i].remove();
   }
   this.children = [];
@@ -160,28 +160,28 @@ phina.define('phina.display.ArcShape', {
   superClass: 'phina.display.Shape',
 
   init: function(options) {
-  options = ({}).$safe(options, {
-    backgroundColor: 'transparent',
-    fill: 'red',
-    stroke: '#aaa',
-    strokeWidth: 4,
-    radius: 32,
-    startAngle: 0,
-    endAngle: 270,
+    options = ({}).$safe(options, {
+      backgroundColor: 'transparent',
+      fill: 'red',
+      stroke: '#aaa',
+      strokeWidth: 4,
+      radius: 32,
+      startAngle: 0,
+      endAngle: 270,
 
-    anticlockwise: false,
-  });
-  this.superInit(options);
+      anticlockwise: false,
+    });
+    this.superInit(options);
 
-  this.radius = options.radius;
-  this.startAngle = options.startAngle;
-  this.endAngle = options.endAngle;
-  this.anticlockwise = options.anticlockwise;
+    this.radius = options.radius;
+    this.startAngle = options.startAngle;
+    this.endAngle = options.endAngle;
+    this.anticlockwise = options.anticlockwise;
 
-  this.setBoundingType('circle');
+    this.setBoundingType('circle');
   },
 
   prerender: function(canvas) {
-  canvas.fillPie(0, 0, this.radius, this.startAngle, this.endAngle);
+    canvas.fillPie(0, 0, this.radius, this.startAngle, this.endAngle);
   },
 });

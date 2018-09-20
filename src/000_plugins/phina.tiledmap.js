@@ -59,7 +59,7 @@ phina.define("phina.asset.TiledMap", {
           self.dataType = "xml";
           self.data = data;
           self._parse(data);
-//          resolve(self);
+          // resolve(self);
         }
       }
     };
@@ -157,11 +157,11 @@ phina.define("phina.asset.TiledMap", {
         if (this.layers[i].type == "objectgroup" && this.layers[i].visible != "0") {
           var layer = this.layers[i];
           var opacity = layer.opacity || 1.0;
-          layer.objects.forEach(function(e) {
+          layer.objects.forEach(e => {
             if (e.gid) {
               this._setMapChip(canvas, e.gid, e.x, e.y, opacity);
             }
-          }.bind(this));
+          });
           generated = true;
         }
         //イメージレイヤー
@@ -311,9 +311,9 @@ phina.define("phina.asset.TiledMap", {
     if (loadImage.length) {
       var loader = phina.asset.AssetLoader();
       loader.load(assets);
-      loader.on('load', function(e) {
+      loader.on('load', () => {
         //透過色設定反映
-        loadImage.forEach(function(elm) {
+        loadImage.forEach(elm => {
           var image = phina.asset.AssetManager.get('image', elm.image);
           if (elm.transR !== undefined) {
             var r = elm.transR, g = elm.transG, b = elm.transB;
@@ -327,7 +327,7 @@ phina.define("phina.asset.TiledMap", {
         });
         //読み込み終了
         that._resolve(that);
-      }.bind(this));
+      });
     } else {
       //読み込み終了
       this._resolve(that);
@@ -479,7 +479,7 @@ phina.define("phina.asset.TiledMap", {
       }
     });
 
-    layers.each(function(layer) {
+    layers.each(layer => {
       switch (layer.tagName) {
         case "layer":
           //通常レイヤー
@@ -518,14 +518,14 @@ phina.define("phina.asset.TiledMap", {
           l.properties = this._propertiesToJSON(layer);
 
           //レイヤー内解析
-          each.call(layer.childNodes, function(elm) {
+          each.call(layer.childNodes, elm => {
             if (elm.nodeType == 3) return;
             var d = this._attrToJSON(elm);
             if (d.id === undefined) return;
             d.properties = this._propertiesToJSON(elm);
             //子要素の解析
             if (elm.childNodes.length) {
-              elm.childNodes.forEach(function(e) {
+              elm.childNodes.forEach(e => {
                 if (e.nodeType == 3) return;
                 //楕円
                 if (e.nodeName == 'ellipse') {
@@ -551,10 +551,10 @@ phina.define("phina.asset.TiledMap", {
                     d.polyline.push({x: parseFloat(pts[0]), y: parseFloat(pts[1])});
                   });
                 }
-              }.bind(this));
+              });
             }
             l.objects.push(d);
-          }.bind(this));
+          });
 
           data.push(l);
           break;
@@ -575,7 +575,7 @@ phina.define("phina.asset.TiledMap", {
           data.push(l);
           break;
       }
-    }.bind(this));
+    });
     return data;
   },
 
@@ -590,8 +590,8 @@ phina.define("phina.asset.TiledMap", {
     var dataList = data.split(',');
     var layer = [];
 
-    dataList.each(function(elm, i) {
-      var num = parseInt(elm, 10) - 1;
+    dataList.each((elm, i) => {
+      const num = parseInt(elm, 10) - 1;
       layer.push(num);
     });
 
@@ -610,11 +610,9 @@ phina.define("phina.asset.TiledMap", {
     var dataList = atob(data.trim());
     var rst = [];
 
-    dataList = dataList.split('').map(function(e) {
-      return e.charCodeAt(0);
-    });
+    dataList = dataList.split('').map(e => e.charCodeAt(0));
 
-    for (var i=0,len=dataList.length/4; i<len; ++i) {
+    for (var i = 0, len = dataList.length / 4; i < len; ++i) {
       var n = dataList[i*4];
       rst[i] = parseInt(n, 10) - 1;
     }
