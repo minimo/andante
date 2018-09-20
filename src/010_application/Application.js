@@ -1,9 +1,16 @@
-phina.globalize();
+phina.define("Application", {
+  superClass: "CanvasApp",
 
-phina.main(function() {
-  const app = GameApp({
-    startLabel: 'main',
-  });
-  app.enableStats();
-  app.run();
+  init: function() {
+    this.superInit({
+      query: '#world',
+      width: SC_W,
+      height: SC_H,
+      backgroundColor: 'rgba(0, 0, 0, 1)',
+    });
+    this.fps = 30;
+  },
+
+  _onLoadAssets: function() {
+  },
 });
