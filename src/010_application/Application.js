@@ -10,7 +10,7 @@ phina.namespace(function() {
         height: SC_H,
         backgroundColor: 'rgba(0, 0, 0, 1)',
       });
-      this.fps = 30;
+      this.fps = 60;
     },
 
     _onLoadAssets: function() {

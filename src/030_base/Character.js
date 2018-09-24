@@ -8,13 +8,15 @@
 phina.namespace(function() {
 
   phina.define("Character", {
-    superClass: "DisplayElement",
+    superClass: "Object3D",
 
     characterType: null,
+    threeObject: null,
 
     init: function() {
       this.superInit();
     },
+
   });
 
 });

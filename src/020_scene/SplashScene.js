@@ -17,14 +17,14 @@ phina.namespace(function() {
       this.progress1 = 0;
 
       //preload asset
-      var assets = AssetList.get({ assetType: "splash" });
+      const assets = AssetList.get({ assetType: "splash" });
       this.loader = phina.asset.AssetLoader();
       this.loader.load(assets);
       this.loader.on('load', () => this.loadcomplete1 = true);
-      this.loader.on('progress', e => this.progress1 = Math.floor(e.progress*100));
+      this.loader.on('progress', e => this.progress1 = Math.floor(e.progress * 100));
 
       //logo
-      var texture = phina.asset.Texture();
+      const texture = phina.asset.Texture();
       texture.load(SplashScene.logo).then(() => this._init());
       this.texture = texture;
     },
@@ -33,19 +33,18 @@ phina.namespace(function() {
       this.sprite = phina.display.Sprite(this.texture)
         .addChildTo(this)
         .setPosition(this.gridX.center(), this.gridY.center())
-        .setScale(0.3);
       this.sprite.alpha = 0;
 
       this.sprite.tweener.clear()
-        .to({alpha:1}, 500, 'easeOutCubic')
+        .to({ alpha: 1 }, 500, 'easeOutCubic')
         .wait(500)
         .call(() => this.unlock = true);
 
       var that = this;
       //進捗ゲージ
       var options = {
-        width:  SC_W * 0.1,
-        height: 3,
+        width: SC_W * 0.3,
+        height: 10,
         backgroundColor: 'transparent',
         fill: 'red',
         stroke: 'white',
