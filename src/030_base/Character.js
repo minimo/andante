@@ -8,7 +8,7 @@
 phina.namespace(function() {
 
   phina.define("Character", {
-    superClass: "Object3D",
+    superClass: "phina.three.Object3D",
 
     characterType: null,
     threeObject: null,

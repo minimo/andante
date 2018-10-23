@@ -14,15 +14,22 @@ phina.namespace(function() {
         .addChildTo(this)
         .setPosition(SC_W * 0.5, SC_H * 0.5);
 
-      this.camera = this.threeLayer.camera;
-      this.camera.position.z = 100;
-
       this.spriteLayer = DisplayElement().addChildTo(this);
 
       this.setupCharacters();
+
+      this.camera = this.threeLayer.camera;
+      this.camera.position.set(0, 50, 100);
+      // this.camera.lookAt({ x: 0, y: 0, z: 0 });
     },
 
-    update: function() {
+    update: function(app) {
+      var p = app.mouse;
+      if (p.getPointing()) {
+        var pt = p.deltaPosition;
+        this.camera.rotation.z += ~~(pt.x*0.1);
+        // this.camera.rotation.y += ~~(pt.y*0.1);
+      }
     },
 
     setupCharacters: function() {
